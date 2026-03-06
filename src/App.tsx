@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { signalStaticTheme } from '@/themes/signal-static'
-import { AudioVisualizer } from '@/components/AudioVisualizer'
 
 const { Hero, Navigation, Card, BackgroundEffects, SectionDivider, LoadingScreen } = signalStaticTheme.slots
 
@@ -160,15 +159,6 @@ function App() {
               </div>
             </Card>
           </div>
-        </section>
-
-        <SectionDivider />
-
-        <section id="visualizer" className="max-w-6xl mx-auto px-6 py-24">
-          <h2 className="text-4xl font-bold font-mono text-foreground mb-12 tracking-tight">
-            {'>'} AUDIO_ANALYZER
-          </h2>
-          <AudioVisualizer />
         </section>
 
         <SectionDivider />
