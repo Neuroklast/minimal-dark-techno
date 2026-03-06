@@ -9,6 +9,7 @@ export default function Navigation() {
     { label: 'ENTRY', href: '#hero' },
     { label: 'RELEASES', href: '#releases' },
     { label: 'EVENTS', href: '#events' },
+    { label: 'ANALYZER', href: '#visualizer' },
     { label: 'TRANSMISSION', href: '#contact' }
   ]
 
