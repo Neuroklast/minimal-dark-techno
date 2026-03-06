@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { glitchNoirTheme } from '@/themes/glitch-noir'
+import { signalStaticTheme } from '@/themes/signal-static'
 import { AudioVisualizer } from '@/components/AudioVisualizer'
 
-const { Hero, Navigation, Card, BackgroundEffects, SectionDivider, LoadingScreen } = glitchNoirTheme.slots
+const { Hero, Navigation, Card, BackgroundEffects, SectionDivider, LoadingScreen } = signalStaticTheme.slots
 
 function App() {
   const [loading, setLoading] = useState(true)
