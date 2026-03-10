@@ -1,66 +1,66 @@
 import { useState, useEffect, useRef } from 'react'
-import { Play, Pause, Upload } from '@phosphor-icons/react'
+import { Button } from '@/components/ui/button'
 import { Button } from '@/components/ui/button'
 
-export function AudioVisualizer() {
+  
   const [isPlaying, setIsPlaying] = useState(false)
   const [audioFile, setAudioFile] = useState<File | null>(null)
   const [audioName, setAudioName] = useState<string>('')
   
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const audioContextRef = useRef<AudioContext | null>(null)
-  const analyserRef = useRef<AnalyserNode | null>(null)
-  const sourceRef = useRef<MediaElementAudioSourceNode | null>(null)
-  const audioElementRef = useRef<HTMLAudioElement | null>(null)
-  const animationRef = useRef<number | null>(null)
-
-  useEffect(() => {
-    return () => {
       if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
       }
-      if (audioContextRef.current) {
         audioContextRef.current.close()
-      }
     }
-  }, [])
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file && file.type.startsWith('audio/')) {
-      setAudioFile(file)
-      setAudioName(file.name)
-      setIsPlaying(false)
-      
-      if (audioElementRef.current) {
-        audioElementRef.current.pause()
-        audioElementRef.current.src = ''
-      }
-      
+
+      setIsPlaying(
+      if (audioEle
       if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
+      
       }
     }
-  }
-
-  const initAudioContext = () => {
-    if (!audioContextRef.current && audioFile) {
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
-      audioContextRef.current = audioContext
-
-      const analyser = audioContext.createAnalyser()
-      analyser.fftSize = 512
-      analyserRef.current = analyser
+        audioContextRef.current.close()
+    if 
+    }
+      co
 
       const audio = new Audio()
-      audio.src = URL.createObjectURL(audioFile)
-      audioElementRef.current = audio
-
-      const source = audioContext.createMediaElementSource(audio)
-      sourceRef.current = source
+    const file = e.target.files?.[0]
+      const source = audioContext.createMediaElem
       
-      source.connect(analyser)
-      analyser.connect(audioContext.destination)
+      analyser.connect(audioC
+      audio.addEventListe
+      
+  }
+  const togglePlayPause = () => {
+
+      i
+      
+      if (isPlaying) {
+        if (animationRef.current) {
+       
+    }
+   
+
+
+    const canvas = canvasRef.current
+    
+
+
+    const bufferLength = analyser.frequencyBinCount
+
+      animationRef.current = request
+
+      const audio = new Audio()
+
+      let barHeight
+
+        barHeight = (dataArray[i] / 255) * canvas.height * 0.8
+        const gradient = ctx.cre
+      
+
+        ctx.fillRect(x, canvas.height - barHeigh
 
       audio.addEventListener('ended', () => {
         setIsPlaying(false)
@@ -84,7 +84,7 @@ export function AudioVisualizer() {
       } else {
         audioElementRef.current.play()
         visualize()
-      }
+       
       setIsPlaying(!isPlaying)
     }
   }
@@ -138,9 +138,9 @@ export function AudioVisualizer() {
         ctx.beginPath()
         ctx.moveTo(0, i)
         ctx.lineTo(canvas.width, i)
-        ctx.stroke()
+
       }
-    }
+
 
     draw()
   }
@@ -154,13 +154,13 @@ export function AudioVisualizer() {
           height={256}
           className="w-full h-full"
         />
-        
+
         {!audioFile && (
           <div className="absolute inset-0 flex items-center justify-center bg-card/90">
             <label className="cursor-pointer flex flex-col items-center gap-4 p-8 border border-dashed border-border hover:border-accent transition-colors">
               <Upload size={48} className="text-muted-foreground" />
               <span className="font-mono text-sm text-muted-foreground text-center">
-                UPLOAD AUDIO FILE<br />
+
                 <span className="text-xs">[WAV • MP3 • OGG]</span>
               </span>
               <input
@@ -172,7 +172,7 @@ export function AudioVisualizer() {
               />
             </label>
           </div>
-        )}
+
       </div>
 
       <div className="flex items-center justify-between gap-4 p-4 bg-card border border-border">
@@ -181,46 +181,46 @@ export function AudioVisualizer() {
             <div className="space-y-1">
               <div className="font-mono text-sm text-foreground truncate">
                 {'>'} {audioName}
-              </div>
+
               <div className="font-mono text-xs text-muted-foreground">
                 {isPlaying ? '[ANALYZING...]' : '[READY]'}
               </div>
             </div>
           ) : (
             <div className="font-mono text-sm text-muted-foreground">
-              NO AUDIO LOADED
+
             </div>
           )}
         </div>
 
         <div className="flex items-center gap-2">
-          <Button
+
             onClick={togglePlayPause}
             disabled={!audioFile}
             variant="default"
-            size="icon"
+
             className="font-mono"
-          >
+
             {isPlaying ? <Pause size={20} weight="fill" /> : <Play size={20} weight="fill" />}
           </Button>
 
           <label htmlFor="audio-upload">
             <Button
-              asChild
+
               variant="outline"
               size="icon"
               className="font-mono"
-            >
+
               <div>
                 <Upload size={20} />
               </div>
-            </Button>
+
           </label>
-        </div>
+
       </div>
 
       <div className="grid grid-cols-3 gap-4 font-mono text-xs">
-        <div className="p-3 bg-card border border-border">
+
           <div className="text-muted-foreground mb-1">FFT SIZE</div>
           <div className="text-foreground">512</div>
         </div>
@@ -228,15 +228,15 @@ export function AudioVisualizer() {
           <div className="text-muted-foreground mb-1">SAMPLE RATE</div>
           <div className="text-foreground">
             {audioContextRef.current ? `${audioContextRef.current.sampleRate}Hz` : 'N/A'}
-          </div>
+
         </div>
-        <div className="p-3 bg-card border border-border">
+
           <div className="text-muted-foreground mb-1">STATUS</div>
           <div className="text-accent">
             {isPlaying ? 'ACTIVE' : 'STANDBY'}
-          </div>
+
         </div>
-      </div>
+
     </div>
-  )
+
 }
