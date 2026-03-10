@@ -420,3 +420,76 @@
   border-radius: 50%;
   animation: signal-static-pulse 1s infinite;
 }
+
+.signal-static-global-noise {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+  animation: signal-static-noise-animation 0.3s infinite;
+}
+
+.signal-static-global-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  animation: signal-static-scanline 8s linear infinite;
+}
+
+@keyframes signal-static-crt-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+}
+
+.signal-static-global-flicker {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.02);
+  animation: signal-static-crt-flicker 0.15s infinite;
+}
+
+@keyframes signal-static-grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+}
+
+.signal-static-global-grain {
+  position: absolute;
+  inset: -50%;
+  background-image: 
+    repeating-radial-gradient(
+      circle at 20% 50%,
+      transparent 0,
+      rgba(255, 255, 255, 0.01) 1px,
+      transparent 2px
+    ),
+    repeating-radial-gradient(
+      circle at 80% 70%,
+      transparent 0,
+      rgba(255, 255, 255, 0.01) 1px,
+      transparent 2px
+    );
+  background-size: 3px 3px, 4px 4px;
+  opacity: 0.4;
+  animation: signal-static-grain-shift 1s steps(10) infinite;
+}

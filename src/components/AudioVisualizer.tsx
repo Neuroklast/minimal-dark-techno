@@ -1,71 +1,65 @@
 import { useState, useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
-import { Button } from '@/components/ui/button'
+import { Play, Pause, Upload } from '@phosphor-icons/react'
 
-  
+export default function AudioVisualizer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [audioFile, setAudioFile] = useState<File | null>(null)
   const [audioName, setAudioName] = useState<string>('')
   
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
+  const audioElementRef = useRef<HTMLAudioElement | null>(null)
+  const animationRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    return () => {
       if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
       }
+      if (audioContextRef.current) {
         audioContextRef.current.close()
+      }
     }
+  }, [])
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-
-      setIsPlaying(
-      if (audioEle
+    if (file) {
+      setAudioFile(file)
+      setAudioName(file.name)
+      setIsPlaying(false)
+      if (audioElementRef.current) {
+        audioElementRef.current.pause()
+      }
       if (animationRef.current) {
-      
+        cancelAnimationFrame(animationRef.current)
       }
     }
-        audioContextRef.current.close()
-    if 
-    }
-      co
-
-      const audio = new Audio()
-    const file = e.target.files?.[0]
-      const source = audioContext.createMediaElem
-      
-      analyser.connect(audioC
-      audio.addEventListe
-      
   }
-  const togglePlayPause = () => {
 
-      i
-      
-      if (isPlaying) {
-        if (animationRef.current) {
-       
-    }
-   
+  const initAudioContext = () => {
+    if (audioContextRef.current) return
 
+    const audioContext = new AudioContext()
+    const analyser = audioContext.createAnalyser()
+    analyser.fftSize = 512
 
-    const canvas = canvasRef.current
+    const audio = new Audio()
+    audio.src = URL.createObjectURL(audioFile!)
     
+    const source = audioContext.createMediaElementSource(audio)
+    source.connect(analyser)
+    analyser.connect(audioContext.destination)
 
+    audioContextRef.current = audioContext
+    analyserRef.current = analyser
+    audioElementRef.current = audio
 
-    const bufferLength = analyser.frequencyBinCount
-
-      animationRef.current = request
-
-      const audio = new Audio()
-
-      let barHeight
-
-        barHeight = (dataArray[i] / 255) * canvas.height * 0.8
-        const gradient = ctx.cre
-      
-
-        ctx.fillRect(x, canvas.height - barHeigh
-
-      audio.addEventListener('ended', () => {
-        setIsPlaying(false)
-      })
-    }
+    audio.addEventListener('ended', () => {
+      setIsPlaying(false)
+    })
   }
 
   const togglePlayPause = () => {
@@ -84,7 +78,7 @@ import { Button } from '@/components/ui/button'
       } else {
         audioElementRef.current.play()
         visualize()
-       
+      }
       setIsPlaying(!isPlaying)
     }
   }
@@ -138,9 +132,9 @@ import { Button } from '@/components/ui/button'
         ctx.beginPath()
         ctx.moveTo(0, i)
         ctx.lineTo(canvas.width, i)
-
+        ctx.stroke()
       }
-
+    }
 
     draw()
   }
@@ -160,7 +154,8 @@ import { Button } from '@/components/ui/button'
             <label className="cursor-pointer flex flex-col items-center gap-4 p-8 border border-dashed border-border hover:border-accent transition-colors">
               <Upload size={48} className="text-muted-foreground" />
               <span className="font-mono text-sm text-muted-foreground text-center">
-
+                {'>'} UPLOAD_AUDIO_FILE
+                <br />
                 <span className="text-xs">[WAV • MP3 • OGG]</span>
               </span>
               <input
@@ -172,7 +167,7 @@ import { Button } from '@/components/ui/button'
               />
             </label>
           </div>
-
+        )}
       </div>
 
       <div className="flex items-center justify-between gap-4 p-4 bg-card border border-border">
@@ -181,46 +176,47 @@ import { Button } from '@/components/ui/button'
             <div className="space-y-1">
               <div className="font-mono text-sm text-foreground truncate">
                 {'>'} {audioName}
-
+              </div>
               <div className="font-mono text-xs text-muted-foreground">
                 {isPlaying ? '[ANALYZING...]' : '[READY]'}
               </div>
             </div>
           ) : (
             <div className="font-mono text-sm text-muted-foreground">
-
+              {'>'} NO_AUDIO_LOADED
             </div>
           )}
         </div>
 
         <div className="flex items-center gap-2">
-
+          <Button
             onClick={togglePlayPause}
             disabled={!audioFile}
             variant="default"
-
+            size="icon"
             className="font-mono"
-
+          >
             {isPlaying ? <Pause size={20} weight="fill" /> : <Play size={20} weight="fill" />}
           </Button>
 
           <label htmlFor="audio-upload">
             <Button
-
+              type="button"
               variant="outline"
               size="icon"
               className="font-mono"
-
+              asChild
+            >
               <div>
                 <Upload size={20} />
               </div>
-
+            </Button>
           </label>
-
+        </div>
       </div>
 
       <div className="grid grid-cols-3 gap-4 font-mono text-xs">
-
+        <div className="p-3 bg-card border border-border">
           <div className="text-muted-foreground mb-1">FFT SIZE</div>
           <div className="text-foreground">512</div>
         </div>
@@ -228,15 +224,15 @@ import { Button } from '@/components/ui/button'
           <div className="text-muted-foreground mb-1">SAMPLE RATE</div>
           <div className="text-foreground">
             {audioContextRef.current ? `${audioContextRef.current.sampleRate}Hz` : 'N/A'}
-
+          </div>
         </div>
-
+        <div className="p-3 bg-card border border-border">
           <div className="text-muted-foreground mb-1">STATUS</div>
           <div className="text-accent">
             {isPlaying ? 'ACTIVE' : 'STANDBY'}
-
+          </div>
         </div>
-
+      </div>
     </div>
-
+  )
 }

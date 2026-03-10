@@ -4,6 +4,13 @@ import Card from './Card'
 import BackgroundEffects from './BackgroundEffects'
 import SectionDivider from './SectionDivider'
 import LoadingScreen from './LoadingScreen'
+import BiographySection from './BiographySection'
+import GigsSection from './GigsSection'
+import ReleasesSection from './ReleasesSection'
+import SocialSection from './SocialSection'
+import Footer from './Footer'
+import ThemeModalWrapper from './ThemeModalWrapper'
+import GlobalOverlayLayer from './GlobalOverlayLayer'
 import './styles.css'
 
 export const signalStaticTheme = {
@@ -25,6 +32,13 @@ export const signalStaticTheme = {
     Card,
     BackgroundEffects,
     SectionDivider,
-    LoadingScreen
+    LoadingScreen,
+    BiographySection,
+    GigsSection,
+    ReleasesSection,
+    SocialSection,
+    Footer,
+    ThemeModalWrapper,
+    GlobalOverlayLayer
   }
 }
