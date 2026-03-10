@@ -99,7 +99,7 @@ export default function SocialSection() {
                     [▶]
                   </div>
                   <div className="font-mono text-sm text-muted-foreground">
-                    {{VIDEO_EMBED_URL}}
+                    VIDEO_PLACEHOLDER
                   </div>
                   <div className="font-mono text-xs text-accent mt-2">
                     LATEST_TRANSMISSION

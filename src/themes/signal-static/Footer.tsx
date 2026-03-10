@@ -20,8 +20,8 @@ export default function Footer() {
             </div>
             <div className="font-mono text-xs text-muted-foreground space-y-1">
               <div>{'>'} NEURAL TECHNO COLLECTIVE</div>
-              <div>{'>'} EST. {{BAND_FOUNDED_YEAR}}</div>
-              <div>{'>'} {{BAND_LOCATION}}</div>
+              <div>{'>'} EST. 2019</div>
+              <div>{'>'} MUNICH, DE</div>
             </div>
           </div>
 
@@ -60,7 +60,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-accent">◆</span>
-                <span>UPTIME: {currentYear - parseInt('{{BAND_FOUNDED_YEAR}}')} YEARS</span>
+                <span>UPTIME: {currentYear - 2019} YEARS</span>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function Footer() {
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="font-mono text-xs text-muted-foreground">
-              © {currentYear} {{BAND_NAME}} • ALL RIGHTS RESERVED • [CLEARANCE_LEVEL: PUBLIC]
+              © {currentYear} NEUROKLAST • ALL RIGHTS RESERVED • [CLEARANCE_LEVEL: PUBLIC]
             </div>
 
             <div className="flex items-center gap-4 font-mono text-xs">
