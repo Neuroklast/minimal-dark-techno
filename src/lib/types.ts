@@ -1,7 +1,7 @@
 import type { ComponentType, ReactNode } from 'react'
 
-export interface ThemeColors {
-  primary: string
+  accent: string
+  foreground: str
   accent: string
   background: string
   foreground: string
@@ -14,32 +14,32 @@ export interface ThemeColors {
 
 export interface ThemeSlots {
   Hero: ComponentType
-  Navigation: ComponentType
-  Card: ComponentType<{ children?: ReactNode; className?: string }>
-  BackgroundEffects: ComponentType
-  SectionDivider: ComponentType
-  LoadingScreen: ComponentType
-  BiographySection: ComponentType
+  LoadingScreen: ComponentT
   GigsSection: ComponentType
-  ReleasesSection: ComponentType
   SocialSection: ComponentType
-  Footer: ComponentType
-  ThemeModalWrapper: ComponentType<{
-    isOpen: boolean
+  ThemeModalWrapper: ComponentT
     onClose: () => void
-    title: string
     children: ReactNode
-  }>
-  GlobalOverlayLayer: ComponentType<{
-    noiseIntensity?: number
+  GlobalOverlayLayer: Compon
     scanlineIntensity?: number
-    flickerIntensity?: number
   }>
+
+  id: string
+  colors: ThemeColo
 }
 
-export interface ThemePackage {
-  id: string
-  name: string
-  colors: ThemeColors
-  slots: ThemeSlots
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
