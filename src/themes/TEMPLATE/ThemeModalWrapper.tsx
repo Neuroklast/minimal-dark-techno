@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 interface ThemeModalWrapperProps {
   isOpen: boolean
   onClose: () => void
-  title: string
+  title?: string
   children: ReactNode
 }
 

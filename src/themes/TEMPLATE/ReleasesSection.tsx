@@ -2,9 +2,9 @@ import Card from './Card'
 
 export default function ReleasesSection() {
   const mockReleases = [
-    { title: '{{ALBUM_TITLE}}', year: '{{RELEASE_YEAR}}' },
-    { title: '{{ALBUM_TITLE}}', year: '{{RELEASE_YEAR}}' },
-    { title: '{{ALBUM_TITLE}}', year: '{{RELEASE_YEAR}}' },
+    { title: 'Album Title 1', year: '2024' },
+    { title: 'Album Title 2', year: '2023' },
+    { title: 'Album Title 3', year: '2022' },
   ]
 
   return (
@@ -14,7 +14,7 @@ export default function ReleasesSection() {
         {mockReleases.map((release, i) => (
           <Card key={i}>
             <div className="aspect-square bg-muted mb-4 flex items-center justify-center">
-              <span className="text-muted-foreground">{{ALBUM_COVER}}</span>
+              <span className="text-muted-foreground">Album Cover</span>
             </div>
             <h3 className="text-xl font-bold text-foreground">{release.title}</h3>
             <p className="text-muted-foreground">{release.year}</p>

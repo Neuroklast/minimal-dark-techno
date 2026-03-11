@@ -7,11 +7,11 @@ export default function BiographySection() {
       <div className="grid md:grid-cols-2 gap-8">
         <Card>
           <p className="text-foreground leading-relaxed">
-            {{BAND_BIO}}
+            Your band biography goes here. Replace this with your story, influences, and journey.
           </p>
         </Card>
         <div className="bg-muted aspect-square flex items-center justify-center">
-          <span className="text-muted-foreground">{{BAND_PHOTO}}</span>
+          <span className="text-muted-foreground">Band Photo</span>
         </div>
       </div>
     </section>

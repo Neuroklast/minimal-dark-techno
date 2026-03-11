@@ -2,10 +2,10 @@ import Card from './Card'
 
 export default function SocialSection() {
   const socialLinks = [
-    { platform: 'Spotify', url: '{{SPOTIFY_URL}}' },
-    { platform: 'Instagram', url: '{{INSTAGRAM_URL}}' },
-    { platform: 'YouTube', url: '{{YOUTUBE_URL}}' },
-    { platform: 'Bandcamp', url: '{{BANDCAMP_URL}}' },
+    { platform: 'Spotify', url: 'https://spotify.com' },
+    { platform: 'Instagram', url: 'https://instagram.com' },
+    { platform: 'YouTube', url: 'https://youtube.com' },
+    { platform: 'Bandcamp', url: 'https://bandcamp.com' },
   ]
 
   return (
@@ -27,7 +27,7 @@ export default function SocialSection() {
         </Card>
         <Card>
           <div className="aspect-video bg-muted flex items-center justify-center">
-            <span className="text-muted-foreground">{{VIDEO_EMBED}}</span>
+            <span className="text-muted-foreground">Video Embed</span>
           </div>
         </Card>
       </div>
